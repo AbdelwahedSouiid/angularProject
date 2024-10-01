@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {ProductsComponent} from "./products/products.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-  //  ProductsComponent,
+   ProductsComponent,
   //  StockComponent,
    // ReglementComponent,
    // SecteurActiviteComponent,
