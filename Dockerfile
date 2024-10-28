@@ -26,7 +26,7 @@ RUN npm run build
 FROM nginx:latest
 
 # Copy the built Angular app from the build stage (located in /app/dist) to NGINX's default html directory
-COPY --from=build dist/angular-project/ /usr/share/nginx/html
+COPY --from=build app/dist/angular-project/ /usr/share/nginx/html
 
 # Expose port 80 to allow traffic to the NGINX web server
 EXPOSE 80
