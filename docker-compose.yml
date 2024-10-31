@@ -7,7 +7,7 @@ services:
     restart: always   # Restart the container automatically if it crashes or stops
 
   spring-backend:
-    image: alarassaa/repo1:tpachat # Ensure this Docker image exists with the correct tag on Docker Hub
+    image: alarassaa/repo1:tpachattag # Ensure this Docker image exists with the correct tag on Docker Hub
     ports:
       - "8089:8089"   # Expose port 8089 for Spring Boot API
     restart: always   # Optional: Allow automatic restart of the Spring Boot container if it crashes
