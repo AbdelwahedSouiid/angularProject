@@ -1,6 +1,5 @@
 # Use Node.js to build the Angular application
-FROM node:14 AS build
-
+FROM node:latest AS build
 # Set working directory in the container
 WORKDIR /app
 
