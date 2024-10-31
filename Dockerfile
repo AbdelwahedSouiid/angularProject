@@ -19,10 +19,11 @@ RUN npm run build -- --configuration production
 FROM nginx:alpine
 
 # Copy the custom Nginx configuration into the container
-COPY nginx/default.conf /etc/nginx/sites-available/default
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Copy the Angular build output folder (be sure to match `angular.json`) from the "build" stage to Nginx's HTML folder
 COPY --from=build /app/dist/angular-project /usr/share/nginx/html
+
 
 # Expose port 80
 EXPOSE 80
