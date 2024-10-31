@@ -5,30 +5,24 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json into the working directory
 COPY package*.json ./
-RUN npm cache clean --force
+
+# Install npm dependencies
 RUN npm install
+
+# Copy the entire project into the container
 COPY . .
 
+# Build the Angular project using the configuration set in angular.json
 RUN npm run build -- --configuration production
-#Stage 2
 
+# Step 2: Use an official Nginx image to serve the app
 FROM nginx:alpine
 
-#caching files
-VOLUME /var/cache/nginx 
-
-RUN rm -r /usr/share/nginx/html/*
+# Copy the custom Nginx configuration into the container
+COPY nginx/default.conf /etc/nginx/sites-available/default
 
 # Copy the Angular build output folder (be sure to match `angular.json`) from the "build" stage to Nginx's HTML folder
-COPY --from=node /app/dist/angular-project /usr/share/nginx/html/
-
-RUN rm /usr/share/nginx/html/assets/environments/runtime-environment.json*
-
-
-# Copy the custom Nginx configuration into the container
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-
-
+COPY --from=build /app/dist/angular-project /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
