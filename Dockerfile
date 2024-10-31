@@ -20,7 +20,7 @@ FROM nginx:alpine
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf  # This step ensures Nginx uses the right config
 
 # Copy the Angular built project files
-COPY --from=build /app/dist /usr/share/nginx/html  # This places the Angular build into Nginx's default directory
+COPY --from=build /app/dist /usr/share/nginx/html  # This places the Angular build into Nginxs default directory
 
 # Expose port 80
 EXPOSE 80
