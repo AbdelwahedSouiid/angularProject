@@ -12,8 +12,9 @@ RUN npm install
 # Copy the entire project into the container
 COPY . .
 
-# Build the Angular project with the production configuration
-RUN npm run build -- --configuration production --outputPath=./dist
+# Inside the Dockerfile, correct the --output-path flag
+RUN npm run build -- --configuration production --output-path=./dist
+
 
 # Step 2: Use an official Nginx image to serve the app
 FROM nginx:alpine
