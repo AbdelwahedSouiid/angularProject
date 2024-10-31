@@ -16,11 +16,11 @@ RUN npm run build -- --output-path=./dist
 # Stage 2: Use Nginx to serve the Angular app
 FROM nginx:alpine
 
-# Copy your custom nginx config
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf  # This step ensures Nginx uses the right config
+# Ensure you've created default.conf with proper Angular routing (../nginx/default.conf)
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Copy the Angular built project files
-COPY --from=build /app/dist /usr/share/nginx/html  # This places the Angular build into Nginxs default directory
+# Copy the Angular build generated from the "build" stage to Nginx's HTML folder
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
