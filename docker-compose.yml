@@ -8,8 +8,19 @@ services:
 
   spring-backend:
     image: alarassaa/repo1:tpachat # Assuming your Spring app has been dockerized in another repo
+    restart: on-failure
     ports:
-      - "8089:8089"   # Expose port 8089 for Spring Boot API
+      - 8089:8089
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/achat_db?createDatabaseIfNotExist=true",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "root",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL8Dialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    stdin_open: true
+    tty: true
     depends_on:       # Ensure Spring Boot starts first
       - angular-frontend
     restart: always
