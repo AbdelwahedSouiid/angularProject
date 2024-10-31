@@ -1,0 +1,22 @@
+<div class="facture-form">
+    <h2>Add New Facture</h2>
+  
+    <!-- Input field for the discount amount (montantRemise) -->
+    <label>Montant Remise (Discount Amount):</label>
+    <input type="number" [(ngModel)]="montantRemise" placeholder="Enter Montant Remise">
+  
+    <!-- Input field for the total invoice amount (montantFacture) -->
+    <label>Montant Facture (Invoice Amount):</label>
+    <input type="number" [(ngModel)]="montantFacture" placeholder="Enter Montant Facture">
+  
+    <!-- Input field for the invoice creation date (dateCreationFacture) -->
+    <label>Date de Création (Creation Date):</label>
+    <input type="date" [(ngModel)]="dateCreationFacture" placeholder="Select Creation Date">
+  
+    <!-- Input field for invoice modification date (dateDerniereModificationFacture) -->
+    <label>Date de Dernière Modification (Last Modification Date):</label>
+    <input type="date" [(ngModel)]="dateDerniereModificationFacture" placeholder="Select Last Modification Date">
+  
+    <!-- Button to submit the facture -->
+    <button (click)="addFacture()">Submit Facture</button>
+  </div>

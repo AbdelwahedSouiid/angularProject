@@ -1,19 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ProductsComponent} from "./products/products.component";
-
+import { FactureComponent } from './facture/facture.component';  // Import your facture component
 
 const routes: Routes = [
-
-  {path: '', redirectTo: 'product', pathMatch: 'full'},
- // {path: 'secteurActivite', component: SecteurActiviteComponent},
- // {path: 'operateur', component: OperateurComponent},
- // {path: 'facture', component: FactureComponent},
- {path: 'product', component: ProductsComponent},
- //{path: 'stock', component: StockComponent},
- //{path: 'reglement', component: ReglementComponent},
-]
-
+  { path: 'facture', component: FactureComponent },  // Example path for Facture
+  { path: '', redirectTo: '/facture', pathMatch: 'full' }  // Default path
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

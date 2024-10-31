@@ -1,35 +1,29 @@
-# Stage 1: Build Angular app
-# Use the latest Node.js image as the base for the build stage
-FROM node:latest AS build
+# Use Node.js to build the Angular application
+FROM node:14 AS build
 
-# Create the /app directory if it doesn't exist
-RUN mkdir -p /app
-
-# Set the working directory to /app, which is where the build will happen
+# Set working directory in the container
 WORKDIR /app
 
-# Copy the package.json file to the /app directory to install dependencies
-# It's important to copy only package.json first to leverage Docker's layer caching for npm install.
-COPY package.json /app/
+# Copy package.json and package-lock.json to install dependencies first
+COPY package*.json ./
 
-# Install the dependencies specified in package.json
+# Install npm dependencies
 RUN npm install
 
-# Copy the rest of the application files into the /app directory
-COPY . /app/
+# Copy the rest of the code
+COPY . .
 
-# Build the Angular project using npm, which will generate the production-ready files in /app/dist
-RUN npm run build
+# Build the Angular app for production (uses the defined configuration)
+RUN npm run build -- --output-path=./dist
 
-# Stage 2: Serve the Angular app with NGINX
-# Use the latest NGINX image as the base for serving the Angular app
-FROM nginx:latest
+# Use an nginx image to serve static files
+FROM nginx:alpine
 
-# Copy the built Angular app from the build stage (located in /app/dist) to NGINX's default html directory
-COPY --from=build /app/dist/angular-project /usr/share/nginx/html
+# Copy the built application from the previous Node container stage
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose port 80 to allow traffic to the NGINX web server
+# Expose port 80 to allow outside traffic to the server
 EXPOSE 80
 
-# Start NGINX in the foreground (this is required to keep the container running)
-CMD ["nginx", "-g", "daemon off;"]
+# Optional: Configuring nginx can be done via /etc/nginx/conf.d/default.conf if needed
+#CMD ["nginx", "-g", "daemon off;"]
