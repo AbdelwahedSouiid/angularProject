@@ -1,13 +1,13 @@
 version: '3'
 services:
   angular-frontend:
-    image: alarassaa/repo2:tpachattag
+    image: alarassaa/repo2:tpachattag-angular-${BUILD_NUMBER}
     ports:
       - "4200:80"     # Expose port 4200 to access Angular app
     restart: always   # Restart the container automatically if it stops
 
   spring-backend:
-    image: alarassaa/repo1:tpachat  # Assuming your Spring app has been dockerized in another repo
+    image: alarassaa/repo1:tpachat-spring-${BUILD_NUMBER}  # Assuming your Spring app has been dockerized in another repo
     ports:
       - "8089:8089"   # Expose port 8089 for Spring Boot API
     depends_on:       # Ensure Spring Boot starts first
