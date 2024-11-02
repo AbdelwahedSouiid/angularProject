@@ -1,13 +1,18 @@
-version: '3'
-services:
-  angular-frontend:
-    image: alarassaa/repo2:tpachattag-angular-${BUILD_NUMBER}
-    ports:
-      - "4200:80"     # Expose port 4200 to access Angular app
-    restart: always   # Restart the container automatically if it crashes or stops
+# Base image: Node.js
+FROM node:latest
 
-  spring-backend:
-    image: alarassaa/repo1:tpachattag # Ensure this Docker image exists with the correct tag on Docker Hub
-    ports:
-      - "8089:8089"   # Expose port 8089 for Spring Boot API
-    restart: always   # Optional: Allow automatic restart of the Spring Boot container if it crashes
+# Create app directory inside container
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json /app/
+RUN npm install
+
+# Copy the rest of the application files
+COPY . /app/
+
+# Expose port 4200 (default port for ng serve)
+EXPOSE 4200
+
+# Run ng serve and bind to all interfaces to allow external access
+CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
