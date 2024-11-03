@@ -1,6 +1,6 @@
 services:
   angular-app:
-    image: alarassaa/repo2:latest
+    image: medlouaynj/repo2:latest
     build: .
     ports:
       - "4200:4200"
