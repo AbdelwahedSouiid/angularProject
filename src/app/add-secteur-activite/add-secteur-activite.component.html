@@ -1,0 +1,33 @@
+<!-- add-secteur-activite.component.html -->
+<h3>Ajouter un Secteur d'Activité</h3>
+<form (ngSubmit)="addSecteur()" class="form">
+  <div class="mb-3">
+    <!-- Ajout d'une marge en bas pour chaque div -->
+    <label for="code" class="form-label">Code Secteur :</label>
+    <input
+      id="code"
+      [(ngModel)]="newSecteur.codeSecteurActivite"
+      name="code"
+      class="form-control"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <!-- Ajout d'une marge en bas pour chaque div -->
+    <label for="libelle" class="form-label">Libellé Secteur :</label>
+    <input
+      id="libelle"
+      [(ngModel)]="newSecteur.libelleSecteurActivite"
+      name="libelle"
+      class="form-control"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-success">Ajouter</button>
+  <span style="margin-right: 10px"></span>
+  <!-- Espace entre les boutons -->
+  <button type="button" (click)="goBack()" class="btn btn-secondary">
+    Retour
+  </button>
+  <!-- Bouton de retour -->
+</form>

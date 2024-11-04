@@ -7,6 +7,9 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ProductsComponent} from "./products/products.component";
+import { SecteurActiviteComponent } from './secteur-activite/secteur-activite.component';
+import { AddSecteurActiviteComponent } from './add-secteur-activite/add-secteur-activite.component';
+import { EditSecteurActiviteComponent } from './edit-secteur-activite/edit-secteur-activite.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import {ProductsComponent} from "./products/products.component";
    // SecteurActiviteComponent,
    // OperateurComponent,
    // FactureComponent,
-    NavbarComponent
+    NavbarComponent,
+  SecteurActiviteComponent,
+  AddSecteurActiviteComponent,
+  EditSecteurActiviteComponent
   ],
   imports: [
     BrowserModule,

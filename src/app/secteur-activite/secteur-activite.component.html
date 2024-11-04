@@ -1,0 +1,37 @@
+<h2>Secteurs d'Activité</h2>
+
+<!-- Bouton pour ajouter un secteur d'activité -->
+<button routerLink="/secteurs/add" class="btn btn-success">
+  Ajouter un Secteur d'Activité
+</button>
+
+<!-- Tableau pour afficher la liste des secteurs d'activité -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Libellé</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let secteur of secteursActivite">
+      <td>{{ secteur.codeSecteurActivite }}</td>
+      <td>{{ secteur.libelleSecteurActivite }}</td>
+      <td>
+        <button
+          routerLink="/edit-secteur-activite/{{ secteur.idSecteurActivite }}"
+          class="btn btn-outline-primary me-2"
+        >
+          Modifier
+        </button>
+        <button
+          (click)="deleteSecteur(secteur.idSecteurActivite)"
+          class="btn btn-outline-danger"
+        >
+          Supprimer
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,29 @@
+<h2>Modifier un Secteur d'Activité</h2>
+<form (ngSubmit)="editSecteur()" class="form">
+  <div class="mb-3">
+    <label for="code" class="form-label">Code Secteur :</label>
+    <input
+      id="code"
+      [(ngModel)]="secteur.codeSecteurActivite"
+      name="code"
+      class="form-control"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label for="libelle" class="form-label">Libellé Secteur :</label>
+    <input
+      id="libelle"
+      [(ngModel)]="secteur.libelleSecteurActivite"
+      name="libelle"
+      class="form-control"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Modifier</button>
+  <span style="margin-right: 10px"></span>
+  <!-- Espace entre les boutons -->
+  <button type="button" (click)="goBack()" class="btn btn-secondary">
+    Annuler
+  </button>
+</form>
