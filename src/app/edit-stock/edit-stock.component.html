@@ -1,0 +1,13 @@
+<h2>Modifier un Stock</h2>
+<form (ngSubmit)="updateStock()">
+  <label for="libelleStock">Libellé :</label>
+  <input id="libelleStock" [(ngModel)]="stock.libelleStock" name="libelleStock" required>
+  
+  <label for="qte">Quantité :</label>
+  <input id="qte" [(ngModel)]="stock.qte" name="qte" type="number" required>
+  
+  <label for="qteMin">Quantité Minimale :</label>
+  <input id="qteMin" [(ngModel)]="stock.qteMin" name="qteMin" type="number" required>
+
+  <button type="submit">Mettre à jour</button>
+</form>

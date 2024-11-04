@@ -1,0 +1,35 @@
+<!-- add-stock.component.html -->
+<h2>Ajouter un Stock</h2>
+<form (ngSubmit)="addStock()" #stockForm="ngForm">
+  <div class="form-group">
+    <label for="libelleStock">Libellé :</label>
+    <input id="libelleStock" 
+           [(ngModel)]="stock.libelleStock" 
+           name="libelleStock" 
+           required 
+           class="form-control">
+  </div>
+  
+  <div class="form-group">
+    <label for="qte">Quantité :</label>
+    <input id="qte" 
+           [(ngModel)]="stock.qte" 
+           name="qte" 
+           type="number" 
+           required 
+           class="form-control">
+  </div>
+  
+  <div class="form-group">
+    <label for="qteMin">Quantité Minimale :</label>
+    <input id="qteMin" 
+           [(ngModel)]="stock.qteMin" 
+           name="qteMin" 
+           type="number" 
+           required 
+           class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="stockForm.invalid">Ajouter</button>
+  <a routerLink="/stock" class="btn btn-secondary">Retourner à la liste des stocks</a>
+</form>
