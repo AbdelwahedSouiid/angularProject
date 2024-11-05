@@ -1,31 +1,37 @@
-import {Injectable} from '@angular/core';
-
-import {HttpClient} from '@angular/common/http';
-import {environment} from "../../../environments/environment";
+// src/app/shared/Service/Product.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Product } from '../Model/Product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  readonly API_URL = environment.url + '/produit';
 
-  constructor(private httpClient: HttpClient) {
+  // Direct URL, as per your request.
+  private apiUrl = 'http://192.168.154.130:8089/projet/produit';
+
+  constructor(private http: HttpClient) {}
+
+  // Get all products (API "/list-products")
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/retrieve-all-produits`);
   }
 
-  getAllProducts() {
-    return this.httpClient.get(`${this.API_URL}/retrieve-all-produits`)
+  // Add a new product (API "/add-produit")
+  addProduct(product: Product): Observable<Product> {
+    // We POST the product data to the backend to add the product.
+    return this.http.post<Product>(`${this.apiUrl}/add-produit`, product);
+  }
+  
+  // Edit a product
+  editProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/update-produit/${product.idProduit}`, product);
   }
 
-  addProduct(product: any) {
-    return this.httpClient.post(`${this.API_URL}/add-produit`, product)
+  // Delete a product
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/remove-produit/${productId}`);
   }
-
-  editProduct(product: any) {
-    return this.httpClient.put(`${this.API_URL}/modify-produit`, product)
-  }
-
-  deleteProduct(idProduct: any) {
-    return this.httpClient.delete(`${this.API_URL}/remove-produit/${idProduct}`)
-  }
-
 }

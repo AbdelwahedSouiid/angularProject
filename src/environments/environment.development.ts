@@ -1,4 +1,4 @@
 export const environment = {
 
-  url: 'http://192.168.91.128:8089/projet',
+  url: 'http://192.168.154.130:8089/projet',
 };

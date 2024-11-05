@@ -1,93 +1,137 @@
 <div class="row">
   <div class="col-md-11" style="margin-left: 20px">
-    <h3 style="margin-top: 20px">List Product </h3>
+    <h3 style="margin-top: 20px">List of Products</h3>
     <hr>
-    <button class="btn btn-round btn-sm btn-success">Add new Product</button>
-    <br><br>
-    <table class="table table-hover">
+    
+    <!-- Add Button to Toggle Form -->
+    <button 
+      class="btn btn-sm btn-primary mb-3"
+      (click)="form = !form"> <!-- Toggle the form -->
+      {{ form ? 'Hide' : 'Add Product' }}
+    </button>
+    
+    <!-- FORM: For Adding New Product -->
+    <div *ngIf="form" class="mb-5">
+      <form>
+        <!-- Product Code -->
+        <div class="mb-3">
+          <label for="product-code">Product Code</label>
+          <input 
+            id="product-code"
+            class="form-control"
+            type="text"
+            [(ngModel)]="product.codeProduit"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <!-- Product Name -->
+        <div class="mb-3">
+          <label for="product-name">Product Name</label>
+          <input 
+            id="product-name"
+            class="form-control"
+            type="text"
+            [(ngModel)]="product.libelleProduit"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <!-- Product Price -->
+        <div class="mb-3">
+          <label for="product-price">Price</label>
+          <input 
+            id="product-price"
+            class="form-control"
+            type="number"
+            [(ngModel)]="product.prix"
+            [ngModelOptions]="{standalone : true}">
+        </div>
+
+        <!-- Category ID -->
+        <div class="mb-3">
+          <label for="product-category-id">Category ID</label>
+          <input 
+            id="product-category-id"
+            class="form-control"
+            type="number"
+            [(ngModel)]="product.categorieProduitId"
+            [ngModelOptions]="{standalone : true}">
+        </div>
+
+        <!-- Stock ID -->
+        <div class="mb-3">
+          <label for="product-stock-id">Stock ID</label>
+          <input 
+            id="product-stock-id"
+            class="form-control"
+            type="number"
+            [(ngModel)]="product.stockId"
+            [ngModelOptions]="{standalone : true}">
+        </div>
+
+        <!-- Create Date -->
+        <div class="mb-3">
+          <label for="product-create-date">Create Date</label>
+          <input 
+            id="product-create-date"
+            class="form-control"
+            type="date"
+            [(ngModel)]="product.dateCreation"
+            [ngModelOptions]="{standalone : true}">
+        </div>
+
+        <!-- Update Date -->
+        <div class="mb-3">
+          <label for="product-update-date">Update Date</label>
+          <input 
+            id="product-update-date"
+            class="form-control"
+            type="date"
+            [(ngModel)]="product.dateDerniereModification"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <!-- Submit and Cancel Buttons -->
+        <button 
+          class="btn btn-success" 
+          type="button" 
+          (click)="addProduct()">Submit</button>
+        <button class="btn btn-secondary" type="button" (click)="cancel()">Cancel</button>
+      </form>
+    </div>
+
+    <!-- Existing Product List Table -->
+    <table class="table table-bordered mt-3">
       <thead>
-      <tr>
-        <th>Id</th>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Create Date</th>
-        <th>Update Date</th>
-        <th>Action</th>
-      </tr>
+        <tr>
+          <th>Id</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Create Date</th>
+          <th>Update Date</th>
+          <th>Category ID</th>
+          <th>Stock ID</th>
+          <th>Actions</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor='let p of listProducts'>
-        <td>{{p.idProduit}}</td>
-        <td>{{p.codeProduit}}</td>
-        <td>{{p.libelleProduit}}</td>
-        <td>{{p.prix}}</td>
-        <td>{{p.dateCreation}}</td>
-        <td>{{p.dateDerniereModification}}</td>
-        <td>
-          <button type="button" class="btn btn-outline-primary">Edit
-          </button>
-          &nbsp;
-          <button type="button" class="btn btn-outline-danger"
-                  (click)="deleteProduct(p.idProduit)">Delete
-          </button>
-        </td>
-      </tr>
+        <tr *ngFor="let p of listProducts">
+          <td>{{ p.idProduit }}</td>
+          <td>{{ p.codeProduit }}</td>
+          <td>{{ p.libelleProduit }}</td>
+          <td>{{ p.prix }}</td>
+          <td>{{ p.dateCreation | date }}</td>
+          <td>{{ p.dateDerniereModification | date }}</td>
+          <td>{{ p.categorieProduitId }}</td>
+          <td>{{ p.stockId }}</td>
+          <td>
+            <button 
+              type="button" 
+              class="btn btn-outline-danger"
+              (click)="deleteProduct(p.idProduit)">Delete</button>
+          </td>
+        </tr>
       </tbody>
     </table>
-
   </div>
 </div>
-<ng-template #mymodal1 let-modal1>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add new Product</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal1.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="mb-3">
-        <label for="product-code">Product Code</label>
-        <div class="input-group">
-          <input id="Product-code" class="form-control" type="text" placeholder="Product Code"
-                 [(ngModel)]="product.codeProduit"
-                 [ngModelOptions]="{standalone : true}"></div>
-      </div>
-      <div class="mb-3">
-        <label for="product-name">Product Name</label>
-        <div class="input-group">
-          <input id="Product-name" class="form-control" type="text" placeholder="Product Name"
-                 [(ngModel)]="product.libelleProduit"
-                 [ngModelOptions]="{standalone : true}"></div>
-      </div>
-      <div class="mb-3">
-        <label for="product-prix">Product Price</label>
-        <div class="input-group">
-          <input id="Product-prix" class="form-control" type="number" placeholder="Product Price"
-                 [(ngModel)]="product.prix"
-                 [ngModelOptions]="{standalone : true}"></div>
-      </div>
-      <div class="mb-3">
-        <label for="product-cdate">Product Creation Date</label>
-        <div class="input-group">
-          <input id="Product-cdate" class="form-control" type="date" placeholder="Product Creation Date"
-                 [(ngModel)]="product.dateCreation"
-                 [ngModelOptions]="{standalone : true}"></div>
-      </div>
-      <div class="mb-3">
-        <label for="product-mdate">Product Modification Date</label>
-        <div class="input-group">
-          <input id="Product-mdate" class="form-control" type="date" placeholder="Product Modification Date"
-                 [(ngModel)]="product.dateDerniereModification"
-                 [ngModelOptions]="{standalone : true}"></div>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-success" (click)="addProduct(product)"
-            (click)="modal1.close('Save click')">Add
-    </button>
-    <button type="button" class="btn btn-danger" (click)="modal1.close('Save click')">Cancel</button>
-  </div>
-</ng-template>
-
-
