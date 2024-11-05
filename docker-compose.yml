@@ -1,0 +1,8 @@
+services:
+  angular-app:
+    image: fedibaccar/repo2:latest
+    build: .
+    ports:
+      - "4200:4200"
+    container_name: angular-container
+    restart: always 
