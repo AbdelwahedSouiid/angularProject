@@ -7,6 +7,9 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {ProductsComponent} from "./products/products.component";
+import { FournisseurComponent } from './fournisseur/fournisseur.component';
+import { AddFournisseurComponent } from './add-fournisseur/add-fournisseur.component';
+import { EditFournisseurComponent } from './edit-fournisseur/edit-fournisseur.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import {ProductsComponent} from "./products/products.component";
    // SecteurActiviteComponent,
    // OperateurComponent,
    // FactureComponent,
-    NavbarComponent
+    NavbarComponent,
+  FournisseurComponent,
+  AddFournisseurComponent,
+  EditFournisseurComponent
   ],
   imports: [
     BrowserModule,

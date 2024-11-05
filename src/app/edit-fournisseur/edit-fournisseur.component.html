@@ -1,0 +1,27 @@
+<!-- src/app/edit-fournisseur/edit-fournisseur.component.html -->
+
+<div class="container">
+    <h1>Modifier un Fournisseur</h1>
+    <form (ngSubmit)="editFournisseur()">
+        <div class="mb-3">
+            <label for="code" class="form-label">Code</label>
+            <input type="text" id="code" [(ngModel)]="fournisseur.code" name="code" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="libelle" class="form-label">Libellé</label>
+            <input type="text" id="libelle" [(ngModel)]="fournisseur.libelle" name="libelle" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="categorieFournisseur" class="form-label">Catégorie</label>
+            <select id="categorieFournisseur" [(ngModel)]="fournisseur.categorieFournisseur" name="categorieFournisseur" class="form-select" required>
+                <option value="" disabled>Choisir une catégorie</option>
+                <option value="ORDINAIRE">ORDINAIRE</option>
+                <option value="CONVENTIONNE">CONVENTIONNE</option>
+                <option value="PREMIUM">PREMIUM</option>
+            </select>
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Annuler</button>
+    </form>
+</div>
