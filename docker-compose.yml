@@ -1,0 +1,8 @@
+services:
+  angular-app:
+    image: khalsiaziz/angular-app:latest
+    build: .
+    ports:
+      - "4200:4200"
+    container_name: angular-container
+    restart: always  # This ensures that the container is restarted automatically if needed
