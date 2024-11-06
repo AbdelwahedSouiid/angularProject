@@ -10,7 +10,7 @@ import { Product } from '../Model/Product';
 export class ProductService {
 
   // Direct URL, as per your request.
-  private apiUrl = 'http://192.168.154.130:8089/projet/produit';
+  private apiUrl = 'http://192.168.91.128:8089/projet/produit';
 
   constructor(private http: HttpClient) {}
 
